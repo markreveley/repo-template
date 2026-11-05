@@ -31,8 +31,8 @@ repo's own. `CLAUDE.md` imports this file and adds nothing.
 - Before changing a contract (`SCHEMA.md`, a CLI, a file format), check who
   reads it: <downstream repos, CI>.
 - Tests: `<command>`. Run them before a PR.
-- Threads are archived at `/end` into `md/threads/`, redacted with
-  `md/threads/redact.json` (git-ignored). `md/threads/README.md` says how.
+- Threads are archived at `/end` into the private `thread-archive` repo,
+  under `threads/<repo>/`, not into this repo.
 - Worktrees go under `.claude/worktrees/` (git-ignored). Never touch
   another session's worktree.
 

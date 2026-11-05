@@ -1,6 +1,4 @@
 LOCAL.md
 .claude/worktrees/
-md/threads/raw/
-md/threads/redact.json
 node_modules/
 .venv/

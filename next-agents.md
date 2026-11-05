@@ -16,7 +16,7 @@ Read with [`next-operator.md`](next-operator.md). Rewrite both at the end of eac
 
 ## Environment facts
 - No dependencies. `shellcheck` on the script before a change lands.
-- The `/start` and `/end` skills live in `~/.claude/skills/` (linked from `~/.dotfiles`); `/end` already writes threads to `md/threads/` when the folder exists.
+- The `/start` and `/end` skills live in `~/.claude/skills/` (linked from `~/.dotfiles`); `/end` writes threads to `~/dev/repos/thread-archive/threads/<repo>/`, not into the repo.
 
 ## Next, in order
 1. First commit and push, when the operator says.
