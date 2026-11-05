@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # check-layout.sh [repo-root]: report where a repo departs from repo-template's layout.
-# Reads the layout only, never the documents. Exit 1 if there is any finding.
+# Reads the layout, and pinned template text (via skills/template-sync/sync.sh); not the rest of the documents. Exit 1 if there is any finding.
 set -u
+here=$(cd -P "$(dirname "$0")" && pwd)
 root="${1:-.}"
 cd "$root" || { echo "no such directory: $root" >&2; exit 2; }
 findings=0
@@ -75,6 +76,14 @@ done < <(find . -type d \
   ! -path '*/node_modules*' ! -path '*/.venv*' ! -path '*/.cache*' \
   ! -path './.claude*' ! -path './.agents*' ! -path './.github*' \
   ! -path '.' | sort)
+
+# 5. Pinned template text that no longer matches the template (skills/template-sync/sync.sh says how).
+sync="$(dirname "$here")/skills/template-sync/sync.sh"
+if [ -x "$sync" ] && [ "$(pwd -P)" != "$(dirname "$here")" ]; then
+  while IFS= read -r line; do
+    say "pinned template text is out of date: ${line#stale } (run $sync for the diff)"
+  done < <("$sync" --stale-only .)
+fi
 
 if [ "$findings" -eq 0 ]; then
   echo "layout ok"
