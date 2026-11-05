@@ -5,6 +5,8 @@ holds or emits: file layouts, frontmatter fields, identifiers, JSON shapes,
 CLI arguments and exit codes, anything another program reads. Changing it is
 a breaking change for whatever reads the data, so the file says who that is.
 
+**Changed by:** a breaking change, announced to whatever reads the data.
+
 **Belongs here:** each format with an example that validates; every field
 with whether it is required and what values it takes; the identifier rules;
 the parsed shape a reader gets; the error and problem codes; the readers

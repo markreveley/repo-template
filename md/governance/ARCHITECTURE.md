@@ -6,6 +6,8 @@ with their reasons. A reader who is about to change how the parts fit reads
 this first. It describes what is built; where it describes a target instead,
 the status line says so and names what gates the build.
 
+**Changed by:** a design decision.
+
 **Belongs here:** the parts and their responsibilities; the data and
 control flow between them; the interfaces at the boundaries; the invariants
 the design keeps; each design decision with the alternatives considered and

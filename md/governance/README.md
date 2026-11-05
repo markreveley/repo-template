@@ -1,22 +1,24 @@
 # governance/
 
-The documents that govern the repo. Five fixed names, all five always
-present. A document the repo has no use for holds only its title and its
-pinned block; it is never deleted (repo-template README, R10 and R12).
+The documents that govern the repo. All five are always present: one the
+repo has no use for holds only its title and its pinned block, and is
+never deleted (repo-template README, R10 and R12).
 
-| file | says | changed by |
-|---|---|---|
-| [`ARCHITECTURE.md`](ARCHITECTURE.md) | how the thing is built: the parts, the flow between them, the boundaries, and the decisions with their reasons | a design decision |
-| [`POLICY.md`](POLICY.md) | the rules in force: each one numbered, with why it holds and what checks it | a ruling by the operator |
-| [`SCHEMA.md`](SCHEMA.md) | the formats and contracts of the data the repo holds or emits | a breaking change, announced to whatever reads the data |
-| [`PROCEDURE.md`](PROCEDURE.md) | the step-by-step methods the repo runs, each numbered, saying which steps a person does | a method being tried and adopted |
-| [`DOCTRINE.md`](DOCTRINE.md) | what the repo holds to be true and what it values: the principles the policies derive from and the architecture serves | an argument, recorded in an analysis |
+- [`ARCHITECTURE.md`](ARCHITECTURE.md)
+- [`POLICY.md`](POLICY.md)
+- [`SCHEMA.md`](SCHEMA.md)
+- [`PROCEDURE.md`](PROCEDURE.md)
+- [`DOCTRINE.md`](DOCTRINE.md)
 
-How they relate: doctrine says why, policy says what is required, procedure
-says how it is done, schema says what the data looks like, architecture
-says how the parts fit. A rule nobody checks and nothing enforces is
-doctrine, not policy. A policy cites the doctrine it serves; a procedure
-cites the policies it satisfies; an architecture decision cites both.
+How they relate:
 
-**Does not belong here:** a guide (`docs/`), a plan, an analysis, a
-document about one piece of the repo only (`docs/`).
+- Doctrine says why; policy says what is required; procedure says how it
+  is done; schema says what the data looks like; architecture says how the
+  parts fit.
+- A rule nobody checks and nothing enforces is doctrine, not policy.
+- A policy cites the doctrine it serves.
+- A procedure cites the policies it satisfies.
+- An architecture decision cites both.
+
+**Does not belong here:** a guide or a document about one piece of the
+repo (`docs/`), a plan (`plans/`), an analysis (`analysis/`).

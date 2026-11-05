@@ -7,6 +7,8 @@ is the reason a policy exists, and it is argued for in an analysis the
 statement cites. When a doctrine changes, the policies that cited it are
 reread.
 
+**Changed by:** an argument, recorded in an analysis.
+
 **Belongs here:** each principle as one statement, numbered; the analysis
 or source that argues it; the policies and architecture decisions that
 rest on it.

@@ -6,6 +6,8 @@ each rule says. The rules are numbered and the numbers are never reused, so
 other documents cite them (`P4`) and a retired rule leaves a gap that says
 it was retired.
 
+**Changed by:** a ruling by the operator.
+
 **Belongs here:** a rule that binds anyone working in the repo, person or
 agent; why it holds, in a sentence; what checks it; the doctrine it serves,
 if `DOCTRINE.md` is in use.
