@@ -12,8 +12,9 @@ outside system the repo depends on.
 (`governance/SCHEMA.md`), findings from looking into something (`analysis/`),
 steps still to be done (`plans/`).
 
-**Names:** `<topic>.md`, lower case, hyphens. A topic that needs more than
-one file gets a folder with a README.
+**Names:** `<topic>.md`, words joined by hyphens. Lower case is usual, not
+required: a name a reader looks for in capitals keeps them (`USAGE.md`). A
+topic that needs more than one file gets a folder with a README.
 
 **Form:** no fixed header. Open with one paragraph saying what the document
 is for and who reads it. Keep a decision record's reasons; delete steps that
