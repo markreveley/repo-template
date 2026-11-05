@@ -1,8 +1,8 @@
 # governance/
 
 The documents that govern the repo. Five fixed names, all five always
-present: a document the repo has no use for is left empty, not deleted
-(repo-template README, guideline 4).
+present. A document the repo has no use for holds only its title and its
+pinned block; it is never deleted (repo-template README, R10 and R12).
 
 | file | says | changed by |
 |---|---|---|

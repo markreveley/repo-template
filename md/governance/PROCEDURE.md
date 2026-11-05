@@ -1,7 +1,5 @@
 # Procedure
 
-> Status: template · 2026-11-04 · replace this body with the repo's own, or empty the file
-
 **What this file is for.** The step-by-step methods the repo runs: how a
 release is cut, how a pilot is run, how a document is decomposed, how a
 finding is ratified. A procedure is followed in order, by a person or an

@@ -1,7 +1,5 @@
 # Architecture
 
-> Status: template · 2026-11-04 · replace this body with the repo's own, or empty the file
-
 **What this file is for.** How the thing is built: the parts, what flows
 between them, where the boundaries are, and the decisions that shaped it
 with their reasons. A reader who is about to change how the parts fit reads

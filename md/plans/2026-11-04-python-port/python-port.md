@@ -9,7 +9,7 @@ exit codes, so nothing that calls them has to change except the file name.
 ## Why
 
 - The README's "What the check enforces" table is written by hand from the
-  script. In Python each check can carry its description and guideline
+  script. In Python each check can carry its description and rule
   number, and the script can print the table (`--list-checks`), so the
   README and the script can't drift apart.
 - `sync.sh` does the most text handling (finding pinned blocks, cutting a
@@ -32,7 +32,7 @@ exit codes, so nothing that calls them has to change except the file name.
   PR; every reference is updated in that PR too.
 - **D4. check-layout imports sync** instead of running it as a
   subprocess, for the stale-pin check.
-- **D5. Each check is data.** A list of entries, each with its guideline
+- **D5. Each check is data.** A list of entries, each with its rule
   number, a one-line description and a function. The README table is the
   output of `check-layout.py --list-checks`, pasted in; a test fails when
   the two differ.

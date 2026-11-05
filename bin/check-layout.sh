@@ -8,7 +8,7 @@ cd "$root" || { echo "no such directory: $root" >&2; exit 2; }
 findings=0
 say() { findings=$((findings + 1)); printf '%s\n' "$*"; }
 
-# 1. The named root files.
+# 1. The named root files (R1), and CLAUDE.md's import (R4).
 for f in README.md AGENTS.md CLAUDE.md next-agents.md next-operator.md; do
   [ -f "$f" ] || say "missing at root: $f"
 done
@@ -16,7 +16,7 @@ if [ -f CLAUDE.md ] && ! grep -q '^@AGENTS.md' CLAUDE.md; then
   say "CLAUDE.md does not import AGENTS.md (expected a line '@AGENTS.md')"
 fi
 
-# 2. Loose documents at the root: any .md other than the named files and LICENSE-like names.
+# 2. Loose documents at the root (R3): any .md other than the named files and those R2 allows.
 for f in *.md; do
   [ -e "$f" ] || continue
   case "$f" in
@@ -25,7 +25,8 @@ for f in *.md; do
   esac
 done
 
-# 3. md/: the seven default folders (guideline 1), a README in every folder directly in md/ (guideline 2).
+# 3. md/: the seven default folders (R5), a README in every folder directly in md/ (R6), no loose document (R9),
+#    the five governing documents (R10) and nothing else in md/governance/ (R11). Rule numbers: README, "The rules".
 if [ -d md ]; then
   for d in governance docs plans analysis issues audits tested; do
     [ -d "md/$d" ] || say "missing default folder: md/$d/"
@@ -40,7 +41,7 @@ if [ -d md ]; then
   done
   if [ -d md/governance ]; then
     for g in ARCHITECTURE POLICY SCHEMA PROCEDURE DOCTRINE; do
-      [ -f "md/governance/$g.md" ] || say "missing governing document: md/governance/$g.md (leave it empty if unused; guideline 4)"
+      [ -f "md/governance/$g.md" ] || say "missing governing document: md/governance/$g.md (an unused one holds only its title and pin; R10, R12)"
     done
     for f in md/governance/*; do
       case "$(basename "$f")" in
@@ -53,7 +54,7 @@ else
   say "no md/ folder"
 fi
 
-# 4. Pinned template text that no longer matches the template (skills/template-sync/sync.sh says how).
+# 4. Pinned template text that no longer matches the template (R14) (skills/template-sync/sync.sh says how).
 sync="$(dirname "$here")/skills/template-sync/sync.sh"
 if [ -x "$sync" ] && [ "$(pwd -P)" != "$(dirname "$here")" ]; then
   while IFS= read -r line; do

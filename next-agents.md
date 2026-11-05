@@ -9,7 +9,7 @@ updated: 2026-11-04
 Read with [`next-operator.md`](next-operator.md). Rewrite both at the end of each thread; delete finished steps.
 
 ## State
-- This repo is the layout template and the guidelines; `README.md` is the contract, `md/analysis/2026-11-04-layout-survey/` the survey and decisions behind it. Built 4 Nov 2026 beside artifact-dag, which was aligned to it the same day.
+- This repo is the layout template and its rules; `README.md` is the contract, `md/analysis/2026-11-04-layout-survey/` the survey and decisions behind it. Built 4 Nov 2026 beside artifact-dag, which was aligned to it the same day.
 - These two handoff files are this repo's own. A client repo deletes them and runs `/start`, which creates fresh ones from its templates (README, "Adopting the template").
 - Nothing is committed yet; the repo has a remote (`markreveley/repo-template`) and no commits.
 - `bin/check-layout.sh` passes here.

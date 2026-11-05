@@ -4,15 +4,16 @@
 #
 # A pinned block sits at the bottom of a file, after a `---` line:
 #   <!-- pinned from repo-template <path> @ <sha>; refresh from the template, do not edit by hand -->
-#   ## About this folder (repo-template `<sha>`)
+#   ## About this folder (repo-template `<sha>`)    (a README; a governing document says "About this file")
 #   <the template file at <path>, minus its first line (the title)>
 #
-# Default: report every pin (ok / stale / gone), unpinned folder READMEs,
+# Default: report every pin (ok / stale / gone), unpinned folder READMEs and governing documents,
 #   template folders the client repo lacks, and the template's changes since the
 #   oldest pin to the files a client repo fills in rather than pins.
 # --stale-only: print only `stale <file>` lines (check-layout.sh uses this).
 # --apply: rewrite stale pins with the template's HEAD text.
-# --pin FILE: append a pinned block to FILE (a client repo path under md/).
+# --pin FILE: append a pinned block to FILE (a client repo path under md/). A FILE still identical
+#   to the template's is cut to its title line first.
 # Exit: 0 nothing to do, 1 something to do, 2 error.
 set -u
 
@@ -41,8 +42,9 @@ body_pinned() { awk -v m="$2" 'NR > m + 1' "$1"; }     # after the marker and he
 
 block() { # path sha -> the pinned block
   printf -- '---\n\n<!-- pinned from repo-template %s @ %s; refresh from the template, do not edit by hand -->\n' "$1" "$2"
+  what="folder"; [ "$(basename "$1")" = README.md ] || what="file"
   # shellcheck disable=SC2016 # the backticks are Markdown
-  printf '## About this folder (repo-template `%s`)\n' "$2"
+  printf '## About this %s (repo-template `%s`)\n' "$what" "$2"
   body_now "$1"
 }
 
@@ -50,6 +52,10 @@ if [ "$mode" = pin ]; then
   [ -f "$pin_file" ] || { echo "no such file: $pin_file" >&2; exit 2; }
   [ -f "$tdir/$pin_file" ] || { echo "repo-template has no $pin_file" >&2; exit 2; }
   grep -q 'pinned from repo-template' "$pin_file" && { echo "already pinned: $pin_file" >&2; exit 2; }
+  # An unmodified copy of the template's file: keep only its title, so the text is not there twice.
+  if cmp -s "$pin_file" "$tdir/$pin_file"; then
+    tmp=$(mktemp) && head -n 1 "$pin_file" > "$tmp" && mv "$tmp" "$pin_file"
+  fi
   # shellcheck disable=SC2094 # block reads the template's file, not this one
   { printf '\n'; block "$pin_file" "$head_sha"; } >> "$pin_file"
   echo "pinned  $pin_file @ $head_sha"
@@ -98,8 +104,8 @@ done < <(grep -rlE "$marker_re" --include='*.md' --exclude-dir=.git --exclude-di
 
 [ "$mode" = report ] || exit 0
 
-# Folder READMEs with no pin, and template folders the client repo lacks.
-for f in md/README.md md/*/README.md; do
+# Folder READMEs and governing documents with no pin, and template folders the client repo lacks.
+for f in md/README.md md/*/README.md md/governance/{ARCHITECTURE,POLICY,SCHEMA,PROCEDURE,DOCTRINE}.md; do
   [ -f "$f" ] && [ -f "$tdir/$f" ] || continue
   grep -qE "$marker_re" "$f" || note "unpinned $f (pin with: $0 --pin $f)"
 done
@@ -111,9 +117,9 @@ done
 
 # Files a client repo fills in rather than pins: show what changed in the template since the oldest pin.
 if [ -n "$oldest" ]; then
-  filled=(README.md AGENTS.md CLAUDE.md .gitignore md/governance)
+  filled=(README.md AGENTS.md CLAUDE.md .gitignore)
   if ! git -C "$tdir" diff --quiet "$oldest" HEAD -- "${filled[@]}"; then
-    note "template changes since $oldest to files this client repo fills in (README guidelines, AGENTS.md, CLAUDE.md, .gitignore, governance stubs):"
+    note "template changes since $oldest to files this client repo fills in (README rules, AGENTS.md, CLAUDE.md, .gitignore):"
     git -C "$tdir" --no-pager diff "$oldest" HEAD -- "${filled[@]}" | sed 's/^/        /'
   fi
 fi

@@ -1,7 +1,5 @@
 # Policy
 
-> Status: template · 2026-11-04 · replace this body with the repo's own, or empty the file
-
 **What this file is for.** The rules in force. A policy is followed or
 violated, and something checks it: a tool, a review, or nobody yet, which
 each rule says. The rules are numbered and the numbers are never reused, so
@@ -10,7 +8,7 @@ it was retired.
 
 **Belongs here:** a rule that binds anyone working in the repo, person or
 agent; why it holds, in a sentence; what checks it; the doctrine it serves,
-if `DOCTRINE.md` exists.
+if `DOCTRINE.md` is in use.
 
 **Does not:** a principle nothing enforces (`DOCTRINE.md`); a method
 (`PROCEDURE.md`); a format (`SCHEMA.md`); a rule that applies to one tool

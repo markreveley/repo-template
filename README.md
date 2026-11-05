@@ -1,6 +1,6 @@
 # repo-template
 
-A template for how a client repo is laid out and the guidelines it must
+A template for how a client repo is laid out and the rules it must
 follow. A *client repo* is any repo created from this template or brought
 into line with it. Use this repo as the GitHub template for a new client
 repo, or as the checklist when bringing an existing repo into line.
@@ -35,54 +35,93 @@ evals/              evals of the code or of its subject matter, when the repo ha
 Everything else at the root is code or data: source folders, a `dag/`, a
 `tests/`, a build config.
 
-## The guidelines
+## The rules
 
-1. **`md/` has seven default folders.** They are `governance/`, `docs/`,
-   `plans/`, `analysis/`, `issues/`, `audits/` and `tested/`. Every client
-   repo has all seven, even when one is empty.
-2. **Every folder in `md/` must contain a README.** It states what belongs
-   there, what does not, and how files are named. A client repo may add
-   folders to `md/` beyond the seven defaults (`glossary/` is in use
-   elsewhere), as long as they follow the same rules.
-3. **The root holds only the named files.** `README.md`, `AGENTS.md`,
-   `CLAUDE.md`, `next-agents.md` and `next-operator.md` must exist;
-   `LICENSE` and the git-ignored `LOCAL.md` sit beside them. No other document sits
-   at the root: a governing document goes in `md/governance/`, anything
-   else under `md/`.
-4. **All five governing documents are present.** `ARCHITECTURE.md`,
-   `POLICY.md`, `SCHEMA.md`, `PROCEDURE.md` and `DOCTRINE.md` must exist in
-   every client repo's `md/governance/`. The ones in this repo are stubs
-   that say what each is for. A client repo replaces each stub with its own
-   content, or leaves the file empty when it has no use for it; it never
-   deletes one.
-5. **Documents carry a date and a status.** A plan opens with
-   `> Status: proposed · YYYY-MM-DD`. An analysis opens with its date,
-   question, sources read and method caveat. An issue and a thread carry
-   the date in the file name.
-6. **Open questions live in the handoff files.** An analysis holds findings
-   and recommendations; a question that blocks the next step goes in
-   `next-operator.md`, and any other in a plan linked from it. This is the
-   global rule in `~/.dotfiles/agents/AGENTS.md`, "Docs".
-7. **A public client repo names no private project.** Names, stacks and
-   quoted material from private repos live in the git-ignored `LOCAL.md`.
-8. **CLAUDE.md adds nothing.** Rules live in `AGENTS.md` so every agent and
-   every person reads one file. `CLAUDE.md` imports it.
-9. **The handoff files are rewritten, not appended.** `/start` reads them
-   and `/end` rewrites them; finished steps are deleted, not kept as
-   history.
-10. **Threads live outside the client repo.** `/end` writes each thread's
-    exchange to the private
-    [thread-archive](https://github.com/markreveley/thread-archive) repo,
-    under `threads/<repo>/`, unredacted. A client repo keeps what it
-    learned from a thread in its handoff files and documents, not the
-    thread itself.
-11. **A decision is cited with the document that numbers it.** Plans and
-    `ARCHITECTURE.md` both number decisions from `D1`, so a bare `D1` is
-    used only inside its own document; elsewhere it is `ARCHITECTURE D1` or
-    `<plan-slug> D1`. A plan's decision, once accepted and built as design,
-    moves to `ARCHITECTURE.md` under that file's next number, and the plan
-    links to it: architecture numbers stay unique and plan numbers stay
-    local.
+Each rule is one claim. Rules are numbered so the check and other
+documents cite them (`R6`). A number is never reused: a retired rule keeps
+its number as `R7. Retired YYYY-MM-DD: <why>.`
+
+### Root
+
+- **R1.** `README.md`, `AGENTS.md`, `CLAUDE.md`, `next-agents.md` and
+  `next-operator.md` exist at the root.
+- **R2.** `LICENSE` (or `LICENSE.md`), `CHANGELOG.md` and `LOCAL.md` may
+  also sit at the root. `LOCAL.md` is git-ignored.
+- **R3.** No other document sits at the root. A governing document goes in
+  `md/governance/`; any other document goes under `md/`.
+- **R4.** `CLAUDE.md` imports `AGENTS.md` and adds nothing. Rules live in
+  `AGENTS.md`, so every agent and every person reads one file.
+
+### md/
+
+- **R5.** `md/` has seven default folders: `governance/`, `docs/`,
+  `plans/`, `analysis/`, `issues/`, `audits/` and `tested/`. All seven
+  exist, even when empty.
+- **R6.** Every folder directly in `md/` contains a `README.md`.
+- **R7.** A folder's README states what belongs there, what does not, how
+  files are named, and their form.
+- **R8.** A client repo may add folders to `md/` (`glossary/` is in use
+  elsewhere). An added folder follows R6 and R7 and has a row in
+  `md/README.md`'s table.
+- **R9.** No document sits directly in `md/` except `md/README.md`.
+
+### Governing documents
+
+- **R10.** `md/governance/` holds all five governing documents:
+  `ARCHITECTURE.md`, `POLICY.md`, `SCHEMA.md`, `PROCEDURE.md` and
+  `DOCTRINE.md`.
+- **R11.** `md/governance/` holds nothing else except its `README.md`.
+- **R12.** A governing document the client repo has no use for holds only
+  its title and its pinned block. It is never deleted.
+
+### Pinned template text
+
+- **R13.** `md/README.md`, every default folder's README and every
+  governing document end with a pinned block: the template's text for that
+  file ("Pinned template text", below).
+- **R14.** A pinned block is never edited by hand. It is refreshed from the
+  template.
+
+### Dates and status
+
+- **R15.** Every document in `plans/`, `analysis/`, `issues/`, `audits/`
+  and `tested/` has its date in its name. The folder's README gives the
+  pattern. Documents in `docs/` and `governance/` do not.
+- **R16.** A plan, and a governing document in use, open with a status
+  line, `> Status: <word> · YYYY-MM-DD`, updated whenever the document
+  changes.
+- **R17.** The rest of a document's header is set by its folder's README.
+
+### Handoff and threads
+
+- **R18.** An analysis holds findings and recommendations, never open
+  questions (the global rule in `~/.dotfiles/agents/AGENTS.md`, "Docs").
+- **R19.** An open question that blocks the next step goes in
+  `next-operator.md`. Any other open question goes in a plan linked from
+  it.
+- **R20.** `/start` reads the handoff files and `/end` rewrites them.
+  Finished steps are deleted, not kept as history.
+- **R21.** Threads are not kept in the client repo. `/end` writes each
+  thread's exchange, unredacted, to the private
+  [thread-archive](https://github.com/markreveley/thread-archive) repo
+  under `threads/<repo>/`.
+- **R22.** What a client repo learned from a thread goes in its handoff
+  files and documents.
+
+### Private names
+
+- **R23.** A public client repo names no private project.
+- **R24.** Names, stacks and quoted material from private repos go in the
+  git-ignored `LOCAL.md`.
+
+### Decisions
+
+- **R25.** Plans and `ARCHITECTURE.md` number their decisions from `D1`.
+- **R26.** A bare decision number (`D1`) is used only inside its own
+  document. Elsewhere it is `ARCHITECTURE D1` or `<plan-slug> D1`.
+- **R27.** A plan's decision, once accepted and built as design, moves to
+  `ARCHITECTURE.md` under that file's next number, and the plan links to
+  it.
 
 ## Layers
 
@@ -98,12 +137,18 @@ out.
 
 ## Adopting the template
 
-For a new client repo: create it from this template on GitHub, then
-replace every `<placeholder>` in `README.md` and `AGENTS.md`, delete
-`next-agents.md` and `next-operator.md` (they are this repo's own) and run
-`/start`, which creates fresh ones, replace each governing stub with the
-client repo's own content or empty it (guideline 4), pin the folder
-READMEs (below), and run `bin/check-layout.sh`.
+For a new client repo:
+
+1. Create it from this template on GitHub.
+2. Replace every `<placeholder>` in `README.md` and `AGENTS.md`.
+3. Delete `next-agents.md` and `next-operator.md` (they are this repo's
+   own) and run `/start`, which creates fresh ones.
+4. Pin `md/README.md`, each folder README and each governing document:
+   `skills/template-sync/sync.sh --pin <file>`. A file still identical to
+   the template's is cut to its title before the block is added.
+5. Write the client repo's own content above each pin: what is in each
+   folder, and each governing document it uses (R12, R16).
+6. Run `bin/check-layout.sh`.
 
 For an existing repo: run `bin/check-layout.sh` from its root. Move or
 write what it names (the list is in "What the check enforces"), then
@@ -112,22 +157,25 @@ repoint links (`grep -rn "](old/path"`) and run it again.
 ## Pinned template text
 
 A client repo keeps a copy of the template's text on what each `md/`
-folder is for, pinned to the template commit it was copied from. The copy
-freezes the purpose the client repo was built to; comparing it with the
-template later shows where the guidelines moved and the client repo may
-need to follow.
+folder and each governing document is for, pinned to the template commit
+it was copied from. The copy freezes the purpose the client repo was built
+to; comparing it with the template later shows where the rules moved and
+the client repo may need to follow.
 
-The copy goes at the bottom of the client repo's README for that folder,
-after a `---`, never at the top: the top is the client repo's own content
-(what is in the folder). The block is the template's file without its
-title line:
+- **Which files:** `md/README.md`, each default folder's README, and the
+  five governing documents (R13).
+- **Where:** at the bottom of the file, after a `---`, never at the top.
+  The top is the client repo's own content.
+- **What:** the template's file without its title line, under a marker
+  comment and a heading (`About this folder` for a README, `About this
+  file` for a governing document):
 
 ```
 ---
 
-<!-- pinned from repo-template md/plans/README.md @ <sha>; refresh from the template, do not edit by hand -->
-## About this folder (repo-template `<sha>`)
-<the template's md/plans/README.md, minus its first line>
+<!-- pinned from repo-template md/governance/POLICY.md @ <sha>; refresh from the template, do not edit by hand -->
+## About this file (repo-template `<sha>`)
+<the template's md/governance/POLICY.md, minus its first line>
 ```
 
 `skills/template-sync/sync.sh` writes and compares the blocks, and the
@@ -141,10 +189,8 @@ skills/template-sync/sync.sh --pin md/plans/README.md <repo>  # add a block
 skills/template-sync/sync.sh --apply <repo>                   # refresh stale blocks
 ```
 
-To pin a README that holds only the template's text, cut it to its title
-and the client repo's own line, then `--pin` it. Files a client repo fills
-in rather than copies (`README.md`, `AGENTS.md`, `CLAUDE.md`, `.gitignore`,
-the governance stubs) carry no block; the report shows the template's
+Files a client repo fills in rather than copies (`README.md`, `AGENTS.md`,
+`CLAUDE.md`, `.gitignore`) carry no block. The report shows the template's
 changes to them since the client repo's oldest pin.
 
 ## Checking
@@ -159,28 +205,30 @@ own line; exit 2 means the directory does not exist.
 
 ### What the check enforces
 
-Each line is one check, with the guideline it enforces. The check reads
-file and folder names, one line of `CLAUDE.md`, and the pinned blocks; it
-reads nothing else in any document.
+Each line is one check, with the rule it enforces. The check reads file
+and folder names, one line of `CLAUDE.md`, and the pinned blocks; it reads
+nothing else in any document.
 
-| Check | Guideline |
+| Check | Rule |
 | --- | --- |
-| `README.md`, `AGENTS.md`, `CLAUDE.md`, `next-agents.md` and `next-operator.md` exist at the root | 3 |
-| No other `.md` file sits at the root, except `LOCAL.md`, `LICENSE.md` and `CHANGELOG.md` | 3 |
-| `CLAUDE.md` has a line starting `@AGENTS.md` | 8 |
-| `md/` exists, and so do its seven default folders | 1 |
-| Every folder directly in `md/` has a `README.md`; folders nested deeper are not checked | 2 |
-| No `.md` file sits directly in `md/` except `md/README.md` | 2 |
-| `md/governance/` holds all five governing documents, and nothing but them and `README.md` | 4 |
-| Every pinned block matches the template's current text (skipped when run on this repo itself) | Pinned template text |
+| `README.md`, `AGENTS.md`, `CLAUDE.md`, `next-agents.md` and `next-operator.md` exist at the root | R1 |
+| No other `.md` file sits at the root, except `LOCAL.md`, `LICENSE.md` and `CHANGELOG.md` | R3 |
+| `CLAUDE.md` has a line starting `@AGENTS.md` | R4 |
+| `md/` exists, and so do its seven default folders | R5 |
+| Every folder directly in `md/` has a `README.md`; folders nested deeper are not checked | R6 |
+| No `.md` file sits directly in `md/` except `md/README.md` | R9 |
+| `md/governance/` holds all five governing documents | R10 |
+| `md/governance/` holds nothing else except `README.md` | R11 |
+| Every pinned block matches the template's current text (skipped when run on this repo itself) | R14 |
 
 ### What it does not check
 
-- That `LICENSE` exists, or that `LOCAL.md` is git-ignored (3).
-- That `CLAUDE.md` adds nothing beyond the import (8).
-- What a folder README says, or that files follow its naming (2).
-- That a governing document is either the client repo's own content or
-  empty, rather than the template's stub (4).
-- Guidelines 5, 6, 7, 9, 10 and 11: dates and statuses, where questions
-  live, private names, how handoff files are kept, threads, decision
-  citations.
+- R2: that `LOCAL.md` is git-ignored.
+- R4: that `CLAUDE.md` adds nothing beyond the import.
+- R7, R8: what a folder README says, and an added folder's row in
+  `md/README.md`.
+- R12: that an unused governing document holds only its title and pin.
+- R13: that the pins are there. The check compares the pins it finds;
+  `sync.sh`'s report lists files with none.
+- R15 to R27: names, status lines, headers, open questions, handoff files,
+  threads, private names, decisions.
