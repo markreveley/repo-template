@@ -1,7 +1,5 @@
 # Schema
 
-> Status: template · 2026-11-04 · replace this body with the repo's own, or delete the file
-
 **What this file is for.** The formats and contracts of the data the repo
 holds or emits: file layouts, frontmatter fields, identifiers, JSON shapes,
 CLI arguments and exit codes, anything another program reads. Changing it is

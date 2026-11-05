@@ -20,8 +20,8 @@ and why it exists are in repo-template's `README.md`, "Pinned template text".
    (the pin was changed here by hand), `gone` (the template no longer has
    that file), `unpinned`, `missing` (a template folder the client repo
    lacks), and the template's diff since the oldest pin to the files a
-   client repo fills in (`README.md` guidelines, `AGENTS.md`, `CLAUDE.md`,
-   `.gitignore`, governance stubs).
+   client repo fills in (`README.md` rules, `AGENTS.md`, `CLAUDE.md`,
+   `.gitignore`).
 3. **Read each change against the client repo.** For every stale pin and
    every change to a filled-in file, check whether the client repo's own
    text now disagrees: the top of the same README, the files in that folder

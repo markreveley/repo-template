@@ -1,7 +1,5 @@
 # Doctrine
 
-> Status: template · 2026-11-04 · replace this body with the repo's own, or delete the file
-
 **What this file is for.** What the repo holds to be true and what it
 values: the principles its policies derive from and its architecture
 serves. A doctrine statement is not checkable and nothing enforces it; it

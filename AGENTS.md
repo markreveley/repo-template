@@ -10,7 +10,7 @@ repo's own. `CLAUDE.md` imports this file and adds nothing.
 2. `next-agents.md` and `next-operator.md`: where the last thread stopped.
    `/start` reads them; `/end` rewrites them. What to work on comes from
    `next-agents.md`, not from reading other documents.
-3. The governing documents in `md/governance/` that exist: `ARCHITECTURE.md` before
+3. The governing documents in `md/governance/` that are not empty: `ARCHITECTURE.md` before
    changing how the parts fit, `POLICY.md` before any change (its rules are
    numbered so you can cite them), `SCHEMA.md` before writing data the repo
    holds, `PROCEDURE.md` before running one of its methods.

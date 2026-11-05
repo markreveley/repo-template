@@ -2,7 +2,7 @@
 
 The repo's documents about itself and its work. The seven folders below
 exist in every repo, each with its README, whether or not anything is in it
-yet (root README, guideline 1).
+yet (repo-template README, R5 and R6).
 
 | folder | holds | file name |
 |---|---|---|
