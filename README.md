@@ -63,6 +63,13 @@ Everything else at the root is code or data: source folders, a `dag/`, a
     to the private [thread-archive](https://github.com/markreveley/thread-archive)
     repo, under `threads/<repo>/`, unredacted. A repo keeps what it learned
     from a thread in its handoff files and documents, not the thread itself.
+11. **A decision is cited with the document that numbers it.** Plans and
+    `ARCHITECTURE.md` both number decisions from `D1`, so a bare `D1` is
+    used only inside its own document; elsewhere it is `ARCHITECTURE D1` or
+    `<plan-slug> D1`. A plan's decision, once accepted and built as design,
+    moves to `ARCHITECTURE.md` under that file's next number, and the plan
+    links to it: architecture numbers stay unique and plan numbers stay
+    local.
 
 ## Layers
 
