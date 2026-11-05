@@ -79,14 +79,50 @@ artifact is kept; nothing there says how a repo is laid out.
 For a new repo: create it from this template on GitHub, then replace every
 `<placeholder>` in `README.md` and `AGENTS.md`, delete `next-agents.md` and
 `next-operator.md` (they are this repo's own) and run `/start`, which creates
-fresh ones, delete the governing documents the repo has no use for, and run
-`bin/check-layout.sh`.
+fresh ones, delete the governing documents the repo has no use for, pin
+the folder READMEs (below), and run `bin/check-layout.sh`.
 
 For an existing repo: run `bin/check-layout.sh` from its root. It lists
 Markdown-only folders outside `md/`, folders under `md/` with no README,
 loose documents at the root, and the named files that are missing. Move or
 write what it names, then repoint links (`grep -rn "](old/path"`) and run it
 again.
+
+## Pinned template text
+
+A repo keeps a copy of the template's text on what each `md/` folder is
+for, pinned to the template commit it was copied from. The copy freezes
+the purpose the repo was built to; comparing it with the template later
+shows where the guidelines moved and the repo may need to follow.
+
+The copy goes at the bottom of the repo's README for that folder, after a
+`---`, never at the top: the top is the repo's own content (what is in the
+folder). The block is the template's file without its title line:
+
+```
+---
+
+<!-- pinned from repo-template md/plans/README.md @ <sha>; refresh from the template, do not edit by hand -->
+## About this folder (repo-template `<sha>`)
+<the template's md/plans/README.md, minus its first line>
+```
+
+`skills/template-sync/sync.sh` writes and compares the blocks, and the
+`template-sync` skill (`skills/template-sync/SKILL.md`, linked into
+`~/.claude/skills/` by the dotfiles installer) reads the changes against
+the repo:
+
+```sh
+skills/template-sync/sync.sh ~/dev/repos/<repo>               # report
+skills/template-sync/sync.sh --pin md/plans/README.md <repo>  # add a block
+skills/template-sync/sync.sh --apply <repo>                   # refresh stale blocks
+```
+
+To pin a README that holds only the template's text, cut it to its title
+and the repo's own line, then `--pin` it. Files a repo fills in rather
+than copies (`README.md`, `AGENTS.md`, `CLAUDE.md`, `.gitignore`, the
+governance stubs) carry no block; the report shows the template's changes
+to them since the repo's oldest pin.
 
 ## Checking
 
@@ -95,7 +131,8 @@ bin/check-layout.sh            # this repo
 bin/check-layout.sh ~/dev/repos/<repo>
 ```
 
-Exit 1 means at least one finding. The check reads the layout only; it does
-not read the documents. A folder of Markdown that a tool reads as data
+Exit 1 means at least one finding. The check reads the layout, and the
+pinned blocks only to compare them with the template; it does not read the
+rest of the documents. A folder of Markdown that a tool reads as data
 (guideline 1) is listed in `.layoutignore` at the root, one path prefix per
 line, and the README's table says what it is.
