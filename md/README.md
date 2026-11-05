@@ -12,7 +12,6 @@ stays where its tool expects it, and is named in the root README's table.
 | [`plans/`](plans/README.md) | what will be done, in order, and what it waits on | `YYYY-MM-DD-<slug>/<slug>.md` |
 | [`analysis/`](analysis/README.md) | dated findings and recommendations | `YYYY-MM-DD-<slug>/<slug>.md` |
 | [`issues/`](issues/README.md) | dated findings against something | `YYYY-MM-DD-<slug>.md` |
-| [`threads/`](threads/README.md) | the exchange of each working thread | `YYYY-MM-DD-<slug>.md` |
 | [`audits/`](audits/README.md) | a dated reading of the repo against what it claims to be | `YYYY-MM-DD-<slug>.md` |
 | [`tested/`](tested/README.md) | one report per run of something only a run can check | `YYYY-MM-DD-HHMM-<kind>.md` |
 

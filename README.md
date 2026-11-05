@@ -21,7 +21,6 @@ md/                 every Markdown document about the repo or its work (md/READM
   plans/            what will be done, in what order, and what it waits on
   analysis/         dated findings and recommendations
   issues/           dated findings against something: a bug, a doc that disagrees with the code
-  threads/          the exchange of each working thread, redacted
   audits/           dated readings of the repo against what it claims to be
   tested/           one report per run of something only a run can check
 bin/                scripts, when the repo has any
@@ -39,7 +38,7 @@ Everything else at the root is code or data: source folders, a `dag/`, a
    expects it; the README's table says so.
 2. **Every folder under `md/` has a README.** It says what belongs there,
    what does not, and how files are named. A repo may add folders under
-   `md/` beyond the eight defaults (`glossary/` is in use elsewhere) on the
+   `md/` beyond the seven defaults (`glossary/` is in use elsewhere) on the
    same terms.
 3. **The root holds the five named files and README.** No other loose
    documents at the root: a document is a governing document, or it goes under `md/`.
@@ -55,13 +54,15 @@ Everything else at the root is code or data: source folders, a `dag/`, a
    `next-operator.md`, and any other in a plan linked from it. This is the
    global rule in `~/.dotfiles/agents/AGENTS.md`, "Docs".
 7. **A public repo names no private project.** Names, stacks and quoted
-   material from private repos live in the git-ignored `LOCAL.md` and in
-   the thread redaction map. `md/threads/README.md` says how threads are
-   redacted.
+   material from private repos live in the git-ignored `LOCAL.md`.
 8. **CLAUDE.md adds nothing.** Rules live in `AGENTS.md` so every agent and
    every person reads one file. `CLAUDE.md` imports it.
 9. **The handoff files are rewritten, not appended.** `/start` reads them
    and `/end` rewrites them; finished steps are deleted, not kept as history.
+10. **Threads live outside the repo.** `/end` writes each thread's exchange
+    to the private [thread-archive](https://github.com/markreveley/thread-archive)
+    repo, under `threads/<repo>/`, unredacted. A repo keeps what it learned
+    from a thread in its handoff files and documents, not the thread itself.
 
 ## Layers
 
