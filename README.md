@@ -49,10 +49,12 @@ Everything else at the root is code or data: source folders, a `dag/`, a
    `LICENSE` and the git-ignored `LOCAL.md` sit beside them. No other document sits
    at the root: a governing document goes in `md/governance/`, anything
    else under `md/`.
-4. **A governing document is present only when it has content.** The five
-   files in this repo's `md/governance/` are stubs that say what each is
-   for. A client repo deletes the ones it has no use for and lists the rest
-   in its README.
+4. **All five governing documents are present.** `ARCHITECTURE.md`,
+   `POLICY.md`, `SCHEMA.md`, `PROCEDURE.md` and `DOCTRINE.md` must exist in
+   every client repo's `md/governance/`. The ones in this repo are stubs
+   that say what each is for. A client repo replaces each stub with its own
+   content, or leaves the file empty when it has no use for it; it never
+   deletes one.
 5. **Documents carry a date and a status.** A plan opens with
    `> Status: proposed · YYYY-MM-DD`. An analysis opens with its date,
    question, sources read and method caveat. An issue and a thread carry
@@ -99,9 +101,9 @@ out.
 For a new client repo: create it from this template on GitHub, then
 replace every `<placeholder>` in `README.md` and `AGENTS.md`, delete
 `next-agents.md` and `next-operator.md` (they are this repo's own) and run
-`/start`, which creates fresh ones, delete the governing documents the
-client repo has no use for, pin the folder READMEs (below), and run
-`bin/check-layout.sh`.
+`/start`, which creates fresh ones, replace each governing stub with the
+client repo's own content or empty it (guideline 4), pin the folder
+READMEs (below), and run `bin/check-layout.sh`.
 
 For an existing repo: run `bin/check-layout.sh` from its root. Move or
 write what it names (the list is in "What the check enforces"), then
@@ -169,7 +171,7 @@ reads nothing else in any document.
 | `md/` exists, and so do its seven default folders | 1 |
 | Every folder directly in `md/` has a `README.md`; folders nested deeper are not checked | 2 |
 | No `.md` file sits directly in `md/` except `md/README.md` | 2 |
-| `md/governance/` holds nothing but `README.md` and the five governing names | 4 |
+| `md/governance/` holds all five governing documents, and nothing but them and `README.md` | 4 |
 | Every pinned block matches the template's current text (skipped when run on this repo itself) | Pinned template text |
 
 ### What it does not check
@@ -177,7 +179,8 @@ reads nothing else in any document.
 - That `LICENSE` exists, or that `LOCAL.md` is git-ignored (3).
 - That `CLAUDE.md` adds nothing beyond the import (8).
 - What a folder README says, or that files follow its naming (2).
-- That a governing document has content, or that the README lists it (4).
+- That a governing document is either the client repo's own content or
+  empty, rather than the template's stub (4).
 - Guidelines 5, 6, 7, 9, 10 and 11: dates and statuses, where questions
   live, private names, how handoff files are kept, threads, decision
   citations.

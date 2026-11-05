@@ -39,6 +39,9 @@ if [ -d md ]; then
     [ "$f" = md/README.md ] || say "loose document in md/: $f (it belongs in one of md/'s folders)"
   done
   if [ -d md/governance ]; then
+    for g in ARCHITECTURE POLICY SCHEMA PROCEDURE DOCTRINE; do
+      [ -f "md/governance/$g.md" ] || say "missing governing document: md/governance/$g.md (leave it empty if unused; guideline 4)"
+    done
     for f in md/governance/*; do
       case "$(basename "$f")" in
         README.md|ARCHITECTURE.md|POLICY.md|SCHEMA.md|PROCEDURE.md|DOCTRINE.md) ;;

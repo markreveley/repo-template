@@ -1,8 +1,8 @@
 # governance/
 
-The documents that govern the repo. Five fixed names, each present only when
-it has content; a repo deletes the stubs it has no use for and lists the
-rest in its README.
+The documents that govern the repo. Five fixed names, all five always
+present: a document the repo has no use for is left empty, not deleted
+(repo-template README, guideline 4).
 
 | file | says | changed by |
 |---|---|---|

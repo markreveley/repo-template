@@ -1,6 +1,6 @@
 # Doctrine
 
-> Status: template · 2026-11-04 · replace this body with the repo's own, or delete the file
+> Status: template · 2026-11-04 · replace this body with the repo's own, or empty the file
 
 **What this file is for.** What the repo holds to be true and what it
 values: the principles its policies derive from and its architecture

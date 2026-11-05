@@ -1,6 +1,6 @@
 # Policy
 
-> Status: template · 2026-11-04 · replace this body with the repo's own, or delete the file
+> Status: template · 2026-11-04 · replace this body with the repo's own, or empty the file
 
 **What this file is for.** The rules in force. A policy is followed or
 violated, and something checks it: a tool, a review, or nobody yet, which
