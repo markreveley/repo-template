@@ -1,7 +1,7 @@
 # governance/
 
 The documents that govern the repo. Five fixed names, each present only when
-it has content; a client repo deletes the stubs it has no use for and lists the
+it has content; a repo deletes the stubs it has no use for and lists the
 rest in its README.
 
 | file | says | changed by |

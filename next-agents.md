@@ -21,7 +21,7 @@ Read with [`next-operator.md`](next-operator.md). Rewrite both at the end of eac
 ## Next, in order
 1. First commit and push, when the operator says.
 2. The GitHub template setting is the operator's (their file). The `/start` step that runs the check was added to the skill in dotfiles on 4 Nov 2026.
-3. Decide whether to port `bin/check-layout.sh` and `skills/template-sync/sync.sh` to Python (operator raised it 4 Nov 2026). Reasons for: the README's "What the check enforces" table could be generated from the checks themselves, and sync.sh's text handling would be easier to test. Against: Bash needs nothing installed, Python needs `python3` on every machine that runs the check. If yes, write a plan in `md/plans/` first.
+3. Port the scripts to Python: [python-port](md/plans/2026-11-04-python-port/python-port.md), step 1.
 4. Align the repo that keeps its working material at the root (`in-progress/`), in a session there: `md/` with its seven default folders and their READMEs.
 
 ## Pending operator decisions

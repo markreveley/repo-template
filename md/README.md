@@ -1,7 +1,7 @@
 # md/
 
 The repo's documents about itself and its work. The seven folders below
-exist in every client repo, each with its README, whether or not anything is in it
+exist in every repo, each with its README, whether or not anything is in it
 yet (root README, guideline 1).
 
 | folder | holds | file name |
@@ -14,10 +14,8 @@ yet (root README, guideline 1).
 | [`audits/`](audits/README.md) | a dated reading of the repo against what it claims to be | `YYYY-MM-DD-<slug>.md` |
 | [`tested/`](tested/README.md) | one report per run of something only a run can check | `YYYY-MM-DD-HHMM-<kind>.md` |
 
-Each folder's README says what belongs there and what does not. A client
-repo may add a folder here (`glossary/` exists elsewhere) if it gives it a
-README on the same pattern and a row in this table (root README, guideline
-2).
+Each folder's README says what belongs there and what does not. A repo may
+add a folder here (`glossary/` exists elsewhere) if it gives it a README on the same pattern and a row in this table.
 
 Where a document goes when it could go in two places:
 
