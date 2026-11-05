@@ -1,12 +1,8 @@
 # md/
 
-Every Markdown document about this repo or its work, and nothing else: only
-Markdown meant for one of the folders below lives here. A folder elsewhere
-whose files are all Markdown moves here, unless a tool reads it as data (a
-DAG's nodes, a site's posts, a tutorial's source): that is content, stays
-where its tool expects it, and is named in the root README's table. A folder
-that holds Markdown among other file types, and `evals/`, are outside the
-rule (root README, guideline 1).
+The repo's documents about itself and its work. The seven folders below
+exist in every repo, each with its README, whether or not anything is in it
+yet (root README, guideline 1).
 
 | folder | holds | file name |
 |---|---|---|

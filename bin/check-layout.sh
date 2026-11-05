@@ -25,8 +25,11 @@ for f in *.md; do
   esac
 done
 
-# 3. md/ and its folders' READMEs.
+# 3. md/: the seven default folders (guideline 1), a README in every folder (guideline 2).
 if [ -d md ]; then
+  for d in governance docs plans analysis issues audits tested; do
+    [ -d "md/$d" ] || say "missing default folder: md/$d/"
+  done
   for d in md/*/; do
     [ -d "$d" ] || continue
     [ -f "${d}README.md" ] || say "no README in ${d}"
@@ -47,43 +50,7 @@ else
   say "no md/ folder"
 fi
 
-# 4. Markdown-only folders outside md/ (guideline 1). Each folder at the root is read as a
-#    whole: it is reported when every file in it, subfolders included, is Markdown. A folder
-#    that mixes in other file types is outside the rule, as are evals/, md/, node_modules/ and
-#    hidden folders (and hidden files inside a folder do not count). Content folders a tool
-#    reads (dag/, posts/) are exempt when .layoutignore at the root lists them, one path prefix
-#    per line, no leading ./ ; a listed subfolder's files are left out of its parent's reading.
-#    The README's table is where a repo says what those folders are.
-ignored=()
-if [ -f .layoutignore ]; then
-  while IFS= read -r line; do
-    case "$line" in ''|'#'*) ;; *) ignored+=("./${line%/}") ;; esac
-  done < .layoutignore
-fi
-is_ignored() {
-  local d="$1" i
-  for i in "${ignored[@]+"${ignored[@]}"}"; do
-    case "$d" in "$i"|"$i"/*) return 0 ;; esac
-  done
-  return 1
-}
-while IFS= read -r d; do
-  is_ignored "$d" && continue
-  has_md=0 has_other=0
-  while IFS= read -r f; do
-    is_ignored "$f" && continue
-    case "$f" in
-      *.md) has_md=1 ;;
-      *) has_other=1; break ;;
-    esac
-  done < <(find "$d" -mindepth 1 \( -name '.*' -o -name node_modules \) -prune -o -type f -print)
-  if [ "$has_md" -eq 1 ] && [ "$has_other" -eq 0 ]; then
-    say "markdown-only folder outside md/: $d (documents go under md/; content a tool reads goes in .layoutignore)"
-  fi
-done < <(find . -mindepth 1 -maxdepth 1 -type d \
-  ! -name '.*' ! -name md ! -name evals ! -name node_modules | sort)
-
-# 5. Pinned template text that no longer matches the template (skills/template-sync/sync.sh says how).
+# 4. Pinned template text that no longer matches the template (skills/template-sync/sync.sh says how).
 sync="$(dirname "$here")/skills/template-sync/sync.sh"
 if [ -x "$sync" ] && [ "$(pwd -P)" != "$(dirname "$here")" ]; then
   while IFS= read -r line; do

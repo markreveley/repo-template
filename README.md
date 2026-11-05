@@ -15,7 +15,7 @@ next-agents.md      handoff: the agent's state and next steps, rewritten at the 
 next-operator.md    handoff: the operator's steps and open questions
 LICENSE             MIT
 LOCAL.md            git-ignored notes that stay on one machine (private names, local paths)
-md/                 every Markdown document about the repo or its work (md/README.md)
+md/                 the repo's documents, in seven folders that always exist (md/README.md)
   governance/         the documents that govern the repo: ARCHITECTURE, POLICY, SCHEMA, PROCEDURE, DOCTRINE
   docs/             how to use and work on what the repo holds
   plans/            what will be done, in what order, and what it waits on
@@ -24,7 +24,7 @@ md/                 every Markdown document about the repo or its work (md/READM
   audits/           dated readings of the repo against what it claims to be
   tested/           one report per run of something only a run can check
 bin/                scripts, when the repo has any
-evals/              evals of the code or of its subject matter, when the repo has any; outside the md rule
+evals/              evals of the code or of its subject matter, when the repo has any
 ```
 
 Everything else at the root is code or data: source folders, a `dag/`, a
@@ -32,16 +32,9 @@ Everything else at the root is code or data: source folders, a `dag/`, a
 
 ## The guidelines
 
-1. **The md rule.** `md/` holds only Markdown meant for one of its
-   designated folders: the defaults, and any a repo adds under guideline 2.
-   A folder elsewhere whose files are all Markdown, in every subfolder,
-   moves into `md/`, unless a tool reads it as data (a DAG's node files, a
-   static site's posts, a tutorial's source): that is the repo's content,
-   not a document about it, stays where its tool expects it, and is listed
-   in `.layoutignore`; the README's table says so. A folder that holds
-   Markdown among other file types (code, scripts, data, results),
-   subfolders included, is outside the rule and stays where it is,
-   Markdown and all. So is `evals/`, whatever it holds.
+1. **The default folders exist.** `md/` has `governance/`, `docs/`,
+   `plans/`, `analysis/`, `issues/`, `audits/` and `tested/` in every repo,
+   each with its README, whether or not anything is in it yet.
 2. **Every folder under `md/` has a README.** It says what belongs there,
    what does not, and how files are named. A repo may add folders under
    `md/` beyond the seven defaults (`glossary/` is in use elsewhere) on the
@@ -97,8 +90,8 @@ fresh ones, delete the governing documents the repo has no use for, pin
 the folder READMEs (below), and run `bin/check-layout.sh`.
 
 For an existing repo: run `bin/check-layout.sh` from its root. It lists
-Markdown-only folders outside `md/`, folders under `md/` with no README,
-loose documents at the root, and the named files that are missing. Move or
+the named files and default `md/` folders that are missing, folders under
+`md/` with no README, and loose documents at the root. Move or
 write what it names, then repoint links (`grep -rn "](old/path"`) and run it
 again.
 
@@ -147,9 +140,8 @@ bin/check-layout.sh ~/dev/repos/<repo>
 
 Exit 1 means at least one finding. The check reads the layout, and the
 pinned blocks only to compare them with the template; it does not read the
-rest of the documents. It reads each folder at the root as a whole
-(guideline 1): one whose files, subfolders included, are all Markdown is
-reported; one that mixes in other file types is not, and neither is
-`evals/`, `md/` or a hidden folder. A Markdown-only folder that a tool
-reads as data is listed in `.layoutignore` at the root, one path prefix
-per line, and the README's table says what it is.
+rest of the documents. It checks the named root files and that
+`CLAUDE.md` imports `AGENTS.md`; that the seven default folders exist
+under `md/`, every folder there has a README and `md/governance/` holds
+only its five names; and that no loose document sits at the root or
+directly in `md/`.
