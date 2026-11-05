@@ -1,9 +1,9 @@
 # repo-template
 
-The layout every one of these repos follows, and the guidelines they adhere
-to. Use it as the GitHub template for a new repo, or as the checklist when
-bringing an existing one into line. `bin/check-layout.sh` reports where a
-repo departs from it.
+A template for how a repo is laid out and the guidelines it follows. Use
+it as the GitHub template for a new repo, or as the checklist when bringing
+an existing one into line. `bin/check-layout.sh` reports where a repo
+departs from it.
 
 ## The layout
 
