@@ -22,6 +22,9 @@ plan changes:
 ```
 
 Status words: `proposed`, `accepted`, `in progress`, `done`, `dropped`.
-Decisions are numbered (`D1`) so steps and other documents cite them. A
+Decisions are numbered (`D1`) so steps and other documents cite them;
+outside the plan, cite them with its slug (`<plan-slug> D1`). A decision
+adopted as design moves to `governance/ARCHITECTURE.md` under its next
+number, and the plan links to it. A
 question in a plan moves to `next-operator.md` when the step that waits on
 it comes up.

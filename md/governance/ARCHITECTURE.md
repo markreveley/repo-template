@@ -37,4 +37,5 @@ stages.
 ```
 
 Sections and decisions are numbered so other documents cite them
-(`ARCHITECTURE §4`, `D3`).
+(`ARCHITECTURE §4`, `ARCHITECTURE D3`). A plan's decision, once accepted
+and built, moves here under the next number.
