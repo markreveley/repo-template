@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # sync.sh [--apply | --stale-only | --pin FILE] [repo-root]
-# Compare a repo's pinned repo-template text with the template's HEAD.
+# Compare a client repo's pinned repo-template text with the template's HEAD.
 #
 # A pinned block sits at the bottom of a file, after a `---` line:
 #   <!-- pinned from repo-template <path> @ <sha>; refresh from the template, do not edit by hand -->
@@ -8,11 +8,11 @@
 #   <the template file at <path>, minus its first line (the title)>
 #
 # Default: report every pin (ok / stale / gone), unpinned folder READMEs,
-#   template folders the repo lacks, and the template's changes since the
-#   oldest pin to the files a repo fills in rather than pins.
+#   template folders the client repo lacks, and the template's changes since the
+#   oldest pin to the files a client repo fills in rather than pins.
 # --stale-only: print only `stale <file>` lines (check-layout.sh uses this).
 # --apply: rewrite stale pins with the template's HEAD text.
-# --pin FILE: append a pinned block to FILE (a repo path under md/).
+# --pin FILE: append a pinned block to FILE (a client repo path under md/).
 # Exit: 0 nothing to do, 1 something to do, 2 error.
 set -u
 
@@ -29,7 +29,7 @@ cd "$root" || { echo "no such directory: $root" >&2; exit 2; }
 root=$(pwd)
 
 git -C "$tdir" rev-parse --git-dir >/dev/null 2>&1 || { echo "not a git checkout: $tdir" >&2; exit 2; }
-[ "$root" = "$(cd "$tdir" && pwd -P)" ] && { echo "this is repo-template itself; run it in a repo laid out from it" >&2; exit 2; }
+[ "$root" = "$(cd "$tdir" && pwd -P)" ] && { echo "this is repo-template itself; run it in a client repo" >&2; exit 2; }
 head_sha=$(git -C "$tdir" rev-parse --short HEAD)
 
 marker_re='<!-- pinned from repo-template ([^ ]+) @ ([0-9a-f]+);'
@@ -98,7 +98,7 @@ done < <(grep -rlE "$marker_re" --include='*.md' --exclude-dir=.git --exclude-di
 
 [ "$mode" = report ] || exit 0
 
-# Folder READMEs with no pin, and template folders the repo lacks.
+# Folder READMEs with no pin, and template folders the client repo lacks.
 for f in md/README.md md/*/README.md; do
   [ -f "$f" ] && [ -f "$tdir/$f" ] || continue
   grep -qE "$marker_re" "$f" || note "unpinned $f (pin with: $0 --pin $f)"
@@ -109,11 +109,11 @@ for d in "$tdir"/md/*/; do
   [ -d "$d" ] || note "missing $d/ (repo-template has it)"
 done
 
-# Files a repo fills in rather than pins: show what changed in the template since the oldest pin.
+# Files a client repo fills in rather than pins: show what changed in the template since the oldest pin.
 if [ -n "$oldest" ]; then
   filled=(README.md AGENTS.md CLAUDE.md .gitignore md/governance)
   if ! git -C "$tdir" diff --quiet "$oldest" HEAD -- "${filled[@]}"; then
-    note "template changes since $oldest to files this repo fills in (README guidelines, AGENTS.md, CLAUDE.md, .gitignore, governance stubs):"
+    note "template changes since $oldest to files this client repo fills in (README guidelines, AGENTS.md, CLAUDE.md, .gitignore, governance stubs):"
     git -C "$tdir" --no-pager diff "$oldest" HEAD -- "${filled[@]}" | sed 's/^/        /'
   fi
 fi

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# check-layout.sh [repo-root]: report where a repo departs from repo-template's layout.
+# check-layout.sh [repo-root]: report where a client repo departs from repo-template's layout (README, "What the check enforces").
 # Reads the layout, and pinned template text (via skills/template-sync/sync.sh); not the rest of the documents. Exit 1 if there is any finding.
 set -u
 here=$(cd -P "$(dirname "$0")" && pwd)
@@ -25,7 +25,7 @@ for f in *.md; do
   esac
 done
 
-# 3. md/: the seven default folders (guideline 1), a README in every folder (guideline 2).
+# 3. md/: the seven default folders (guideline 1), a README in every folder directly in md/ (guideline 2).
 if [ -d md ]; then
   for d in governance docs plans analysis issues audits tested; do
     [ -d "md/$d" ] || say "missing default folder: md/$d/"
