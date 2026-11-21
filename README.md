@@ -29,6 +29,7 @@ md/                 the repo's documents, in seven folders that always exist (md
   audits/           dated readings of the repo against what it claims to be
   tested/           one report per run of something only a run can check
 bin/                scripts, when the repo has any
+_scheduled/         definitions of the repo's scheduled tasks, one file each, when the repo has any (_scheduled/README.md)
 evals/              evals of the code or of its subject matter, when the repo has any
 ```
 
