@@ -9,7 +9,7 @@ and the audit links to them.
 **Belongs here:** the scope, the method, the commit checked, every item
 checked with its result, and the fixes that followed with their commits.
 
-**Does not:** the fix itself (a PR), a finding on its own (`../issues/`), a
+**Does not:** the fix itself (a commit), a finding on its own (`../issues/`), a
 recommendation about direction (`../analysis/`).
 
 **Names:** `YYYY-MM-DD-<slug>.md`. A second audit of the same scope is a new
