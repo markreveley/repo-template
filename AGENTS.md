@@ -26,11 +26,12 @@ repo's own. `CLAUDE.md` imports this file and adds nothing.
 
 ## Working
 
-- Changes reach `main` through a PR, unless `next-agents.md` says the work
-  is on `main`. `/end` commits where the work is and opens the PR.
+- Changes go straight to `main`, with no PR. Unless the operator has
+  explicitly asked for the push, ask in the thread first and push once they
+  say yes. `/end` commits where the work is and, with that go-ahead, pushes.
 - Before changing a contract (`SCHEMA.md`, a CLI, a file format), check who
   reads it: <downstream repos, CI>.
-- Tests: `<command>`. Run them before a PR.
+- Tests: `<command>`. Run them before pushing.
 - Threads are archived at `/end` into the private `thread-archive` repo,
   under `threads/<repo>/`, not into this repo.
 - Worktrees go under `.claude/worktrees/` (git-ignored). Never touch

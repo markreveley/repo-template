@@ -11,7 +11,7 @@ Read with [`next-operator.md`](next-operator.md). Rewrite both at the end of eac
 ## State
 - This repo is the layout template and its rules; `README.md` is the contract, `md/analysis/2026-11-04-layout-survey/` the survey and decisions behind it.
 - These two handoff files are this repo's own. A client repo deletes them and runs `/start`, which creates fresh ones (README, "Adopting the template").
-- On `main`, pushed, clean. Changes go through PRs; #5 to #8 merged 4 Nov 2026.
+- On `main`, pushed, clean. Changes go straight to `main` (policy changed 2026-11-21, R29); #5 to #8 were PRs, merged 4 Nov 2026.
 - `bin/check-layout.sh` passes here.
 - The README's rules are R1 to R27, one claim each; the check table and "What it does not check" map every check to a rule. Numbers are never reused.
 - All five governing documents are required (R10); an unused one holds only its title and its pinned block (R12). `md/README.md`, the folder READMEs and the governing documents all carry pins (R13). Each governing document has a `**Changed by:**` line.

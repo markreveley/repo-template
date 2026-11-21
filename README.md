@@ -124,6 +124,19 @@ its number as `R7. Retired YYYY-MM-DD: <why>.`
   `ARCHITECTURE.md` under that file's next number, and the plan links to
   it.
 
+### Scheduled tasks
+
+- **R28.** A client repo with scheduled tasks keeps one definition file per
+  task in `_scheduled/`, in the structure `_scheduled/README.md` sets. The
+  file is the source of truth; the scheduler's prompt only points at it.
+
+### Pushing
+
+- **R29.** Changes go straight to `main`, with no PR. Unless the operator
+  has explicitly asked for the push, the agent asks in the thread first and
+  pushes once the operator says yes. This replaces the earlier rule that
+  changes reach `main` through a PR.
+
 ## Layers
 
 This repo is the template for every client repo. A client repo that keeps
@@ -231,5 +244,6 @@ nothing else in any document.
 - R12: that an unused governing document holds only its title and pin.
 - R13: that the pins are there. The check compares the pins it finds;
   `sync.sh`'s report lists files with none.
-- R15 to R27: names, status lines, headers, open questions, handoff files,
+- R28: that `_scheduled/` files follow the structure.
+- R15 to R27, R29: names, status lines, headers, open questions, handoff files,
   threads, private names, decisions.
