@@ -135,6 +135,7 @@ Each line is one check, with the rule it enforces. The table is `bin/check_layou
 | No `.md` file sits directly in `md/` except `md/README.md` | R9 |
 | `md/governance/` holds only `README.md` and the five governing documents | R11 |
 | No pinned template block from before 2026-11-24 is left in `md/` | R7 |
+| No date or session id in `state.md`, `next.md` or `AGENTS.md`, except in a path or on a line marked `<!-- dated -->` | R20, R30, R32 |
 | `md/docs/repo-template-sync.md` has a `synced:` commit | R31 |
 | No change to `template/` or `README.md` here since that commit (skipped for repo-template itself) | R31 |
 <!-- checks:end -->
@@ -143,7 +144,7 @@ Each line is one check, with the rule it enforces. The table is `bin/check_layou
 
 - R2: that `LOCAL.md` is git-ignored.
 - R4: that `CLAUDE.md` adds nothing beyond the import.
-- R32: that `AGENTS.md` holds no state, next steps or history.
+- R20, R30, R32: what the handoff files and `AGENTS.md` say, beyond the dates and session ids the check finds.
 - R8: what an added folder's README says, and its row in `md/README.md`.
 - R10, R15 to R30: governing documents' form, names, status lines, headers, open questions, what the handoff files hold, threads, private names, decisions, scheduled tasks, pushing.
 

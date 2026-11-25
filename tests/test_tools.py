@@ -57,6 +57,18 @@ class ClientRepo(unittest.TestCase):
         self.assertIn("missing at root: next.md", found)
         self.assertIn("no md/ folder", found)
 
+    def test_dated_lines(self):
+        run(client_sync, "--init", self.root)
+        write(self.root, "state.md", "---\ntype: handoff\nupdated: 2026-11-25\n---\n\n# State\n\n"
+              "- On 2026-11-25 the bridge was rebuilt.\n"
+              "- Moved here by session_019EzEoMb71e8tRnf.\n"
+              "- The plan is md/plans/2026-11-23-derived-index/derived-index.md.\n"
+              "- The grant closes December 1. <!-- dated -->\n"
+              "```\ngit log --since=2026-11-01\n```\n")
+        code, found = self.findings()
+        self.assertEqual(code, 1)
+        self.assertEqual([f.split(":")[1] for f in found], ["8", "9"])
+
     def test_old_handoff_pair(self):
         run(client_sync, "--init", self.root)
         os.remove(os.path.join(self.root, "next.md"))

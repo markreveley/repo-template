@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """check_layout.py [repo] | --list-checks: report where a client repo departs from repo-template (README, "What the check enforces").
 
-Reads file and folder names, CLAUDE.md's import, the folder READMEs' links and the sync record; nothing else.
+Reads file and folder names, CLAUDE.md's import, the folder READMEs' links, the sync record, and the dates and session ids in
+state.md, next.md and AGENTS.md; nothing else.
 Exit 0 prints "layout ok"; exit 1 means at least one finding; exit 2 means the directory does not exist.
 Standard library only; Python 3.9 or later.
 """
@@ -110,6 +111,35 @@ def leftover_pins(r):
     return out
 
 
+# A date or a session id in the handoff or the rules is nearly always history. Dates inside a path or a file name
+# (md/plans/2026-11-23-x/) are references, not history, so a date touching "/", "-" or a word character is skipped.
+MONTHS = "January|February|March|April|May|June|July|August|September|October|November|December"
+DATED = re.compile(rf"(?<![\w/-])20\d\d-\d\d-\d\d(?![\w/-])|\b(?:{MONTHS}) \d{{1,2}}\b|session_[0-9A-Za-z]{{8,}}|claude\.ai/chat/[0-9a-f-]{{8,}}")
+DATED_OK = "<!-- dated -->"
+
+
+def dated_lines(r):
+    out = []
+    for f in ("state.md", "next.md", "AGENTS.md"):
+        lines = read(os.path.join(r, f)).split("\n")
+        front = lines[0] == "---"
+        fence = False
+        for n, line in enumerate(lines, 1):
+            if front:
+                front = not (n > 1 and line == "---")
+                continue
+            if line.lstrip().startswith("```"):
+                fence = not fence
+                continue
+            if fence or DATED_OK in line:
+                continue
+            m = DATED.search(line)
+            if m:
+                out.append(f"{f}:{n}: '{m.group(0)}' looks like history; write what is true now, and leave when it happened to git "
+                           f"(a date the reader needs, such as a deadline: end the line with {DATED_OK}; R20, R30, R32)")
+    return out
+
+
 def sync_record(r):
     if not client_sync.synced_commit(r):
         return [f"no sync record: {client_sync.SYNC_FILE} with a 'synced: <commit>' line (run /client-sync --init; R31)"]
@@ -142,6 +172,7 @@ CHECKS = [
     ("No `.md` file sits directly in `md/` except `md/README.md`", "R9", loose_md),
     ("`md/governance/` holds only `README.md` and the five governing documents", "R11", governance_only),
     ("No pinned template block from before 2026-11-24 is left in `md/`", "R7", leftover_pins),
+    ("No date or session id in `state.md`, `next.md` or `AGENTS.md`, except in a path or on a line marked `<!-- dated -->`", "R20, R30, R32", dated_lines),
     ("`md/docs/repo-template-sync.md` has a `synced:` commit", "R31", sync_record),
     ("No change to `template/` or `README.md` here since that commit (skipped for repo-template itself)", "R31", sync_current),
 ]
