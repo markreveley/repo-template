@@ -1,6 +1,6 @@
 # <repo>: working rules
 
-Rules for any agent (Claude Code, Codex, Gemini and others) and for people. The rules every repo shares are in [repo-template's README](https://github.com/markreveley/repo-template#the-rules); this file adds the repo's own. `CLAUDE.md` imports this file and adds nothing.
+Rules for any agent (Claude Code, Codex, Gemini and others) and for people. The rules every repo shares are in [repo-template's README](https://github.com/markreveley/repo-template#the-rules); this file adds the repo's own. `CLAUDE.md` imports this file and adds nothing. It holds only the rules in force, with their reasons: no state, no next steps and no history (repo-template R32).
 
 ## Read first
 

@@ -4,7 +4,7 @@ Rules for any agent and for people working on repo-template itself. repo-templat
 
 ## Read first
 
-1. `README.md`: the layout, the rules (R1 to R31) and the check. It is the contract every client repo follows.
+1. `README.md`: the layout, the rules (R1 to R32) and the check. It is the contract every client repo follows.
 2. `state.md` (what is true now) and `next.md` (what to do next, in order). Change `next.md` with `/update-next` (R30).
 3. `template/`: the files a new client repo starts from (`README.md`, `AGENTS.md`, `CLAUDE.md`, `state.md`, `next.md`, `.gitignore`), the rules for each `md/` folder (`template/md/<folder>/README.md`), the forms of the five governing documents, and the rules for `_scheduled/`. These are what client repos read and copy; repo-template's own files are at the root and in `md/`.
 

@@ -41,6 +41,7 @@ Each rule is one claim. Rules are numbered so the check and other documents cite
 - **R2.** `LICENSE` (or `LICENSE.md`), `CHANGELOG.md` and `LOCAL.md` may also sit at the root. `LOCAL.md` is git-ignored.
 - **R3.** No other document sits at the root. A governing document goes in `md/governance/`; any other document goes under `md/`.
 - **R4.** `CLAUDE.md` imports `AGENTS.md` and adds nothing. Rules live in `AGENTS.md`, so every agent and every person reads one file.
+- **R32.** `AGENTS.md` holds only the rules in force, each with its reason where it isn't obvious. It keeps no state (`state.md` has that), no next steps (`next.md`) and no history: no dates, no "decided by" lines, no retired rules. When and why a rule changed is in git: the commit that changed it says why and links the thread.
 
 ### md/
 
@@ -142,6 +143,7 @@ Each line is one check, with the rule it enforces. The table is `bin/check_layou
 
 - R2: that `LOCAL.md` is git-ignored.
 - R4: that `CLAUDE.md` adds nothing beyond the import.
+- R32: that `AGENTS.md` holds no state, next steps or history.
 - R8: what an added folder's README says, and its row in `md/README.md`.
 - R10, R15 to R30: governing documents' form, names, status lines, headers, open questions, what the handoff files hold, threads, private names, decisions, scheduled tasks, pushing.
 
