@@ -11,4 +11,4 @@ updated: 2026-11-24
    - Old `next-agents.md` and `next-operator.md`: ableton-claude, agent-context-files-local, artifact-dag, investigations, mark-reveley-site, thread-archive.
    - investigations also keeps its working material at the root, in `in-progress/<topic>/`: move it into the `md/` folders it belongs in (plans, analysis, docs) and repoint links. Its `posted/` and `templates/` are content, and stay.
    - State inside `next.md`: dotfiles, bookmarks, orchestrator, thread-based-dag, voice-agent-prototype.
-   - No handoff yet: artifact-todo, bias-buster, channels, direction, eval-resources, how-does-it-work, interpretability, manifold, manifold-mark, socrates.
+   - No handoff yet: artifact-todo, bias-buster, channels, direction, eval-workshop, how-does-it-work, interpretability, manifold, manifold-mark, socrates.
