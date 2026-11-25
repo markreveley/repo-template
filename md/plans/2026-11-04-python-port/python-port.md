@@ -1,6 +1,8 @@
 # Port the scripts to Python
 
-> Status: accepted · 2026-11-04 · operator decision, 4 Nov 2026; D6 added the same day
+> Status: done · 2026-11-24 · operator decision, 4 Nov 2026; rescoped and built 24 Nov 2026
+
+**Rescoped 2026-11-24.** The operator dropped pinned template text the same day, so the port was built with the new design rather than as a like-for-like copy. Built: `bin/check_layout.py`, `bin/client_sync.py` and `tests/test_tools.py`. Kept: D1 and D5. Changed: D2 (the sync script has new flags and output, since pinning is gone) and D3 (`bin/client_sync.py`, not `skills/template-sync/sync.py`; the skill moved to the agent-files plugin). Kept in a new form: D4 (check_layout imports client_sync for the sync-record checks). Dropped: D6 (pinned shape). The text below is the plan as accepted.
 
 Replace `bin/check-layout.sh` and `skills/template-sync/sync.sh` with
 Python scripts that do the same job, with the same flags, output lines and

@@ -1,24 +1,5 @@
 # governance/
 
-The documents that govern the repo. All five are always present: one the
-repo has no use for holds only its title and its pinned block, and is
-never deleted (repo-template README, R10 and R12).
+None yet. repo-template's rules are in its root README.
 
-- [`ARCHITECTURE.md`](ARCHITECTURE.md)
-- [`POLICY.md`](POLICY.md)
-- [`SCHEMA.md`](SCHEMA.md)
-- [`PROCEDURE.md`](PROCEDURE.md)
-- [`DOCTRINE.md`](DOCTRINE.md)
-
-How they relate:
-
-- Doctrine says why; policy says what is required; procedure says how it
-  is done; schema says what the data looks like; architecture says how the
-  parts fit.
-- A rule nobody checks and nothing enforces is doctrine, not policy.
-- A policy cites the doctrine it serves.
-- A procedure cites the policies it satisfies.
-- An architecture decision cites both.
-
-**Does not belong here:** a guide or a document about one piece of the
-repo (`docs/`), a plan (`plans/`), an analysis (`analysis/`).
+Rules for this folder (what belongs here, naming, form): [template/md/governance/README.md](../../template/md/governance/README.md).

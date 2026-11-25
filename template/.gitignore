@@ -1,0 +1,5 @@
+LOCAL.md
+.claude/worktrees/
+node_modules/
+.venv/
+__pycache__/

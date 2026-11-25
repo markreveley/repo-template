@@ -14,9 +14,8 @@ if `DOCTRINE.md` is in use.
 
 **Does not:** a principle nothing enforces (`DOCTRINE.md`); a method
 (`PROCEDURE.md`); a format (`SCHEMA.md`); a rule that applies to one tool
-only (that tool's document in `../docs/`); the global rules every repo
-shares (`~/.dotfiles/agents/AGENTS.md`), which this file cites and does not
-repeat.
+only (that tool's document in `../docs/`); the rules every repo shares
+(repo-template's README), which this file cites and does not repeat.
 
 **Form.**
 
