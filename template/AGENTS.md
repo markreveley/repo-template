@@ -19,7 +19,7 @@ Rules for any agent (Claude Code, Codex, Gemini and others) and for people. The 
 - Commit and push straight to `main`, without asking (repo-template R29). <Or the repo's exception, with its reason.>
 - Before changing a contract (`SCHEMA.md`, a CLI, a file format), check who reads it: <downstream repos, CI>.
 - Tests: `<command>`. Run them before pushing.
-- Threads are archived with `/archive-thread`, not kept in this repo (repo-template R21).
+- Threads are archived to direction with `/archive-thread`, not kept in this repo (repo-template R21).
 
 ## This repo's own rules
 

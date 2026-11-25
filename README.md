@@ -73,7 +73,7 @@ Each rule is one claim. Rules are numbered so the check and other documents cite
 - **R18.** An analysis holds findings and recommendations, never open questions.
 - **R19.** An open question that blocks the next step is an `(operator)` step in `next.md`. Any other open question goes in a plan linked from it.
 - **R20.** The handoff is `state.md` and `next.md`. `/start` reads them; `/end` rewrites them, with what the thread changed and learned. Finished steps and past events are deleted, not kept as history: git has them.
-- **R21.** Threads are not kept in the client repo. `/archive-thread` writes each one to the private [thread-archive](https://github.com/markreveley/thread-archive) repo or to `direction` (`/end` calls it).
+- **R21.** Threads are not kept in the client repo. `/archive-thread` writes each one to the private [direction](https://github.com/markreveley/direction) repo, in an output folder in the day it started; `/end` calls it and marks the thread as a dev thread.
 - **R22.** Retired 2026-11-24: merged into R20.
 - **R30.** `next.md` holds only the ordered list of next steps, each saying whose it is: `(operator)`, `(agent)` or `(agent, blocked on operator)`. `state.md` holds only what is true now and the environment facts a fresh agent needs. Both start from, and keep the form of, `template/next.md` and `template/state.md`. `next.md` is changed through `/update-next`, which also sets the repo's Next cell in direction's `repo-manifest.md` to its first open step.
 
