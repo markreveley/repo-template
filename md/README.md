@@ -28,4 +28,4 @@ Where a document goes when it could go in two places:
   lives by: governance. One that applies to one piece of the repo only:
   `docs/`.
 - No document here holds an open question. A question that blocks the next
-  step goes in `next-operator.md`; any other goes in a plan linked from it.
+  step is an `(operator)` step in `next.md`; any other goes in a plan linked from it.

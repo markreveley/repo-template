@@ -14,10 +14,9 @@ client repo.
 
 ```
 README.md           what the repo is, how to use it, and a table of what is where
-AGENTS.md           working rules for any agent (Claude Code, Codex, Gemini) and for people
+AGENTS.md           working rules for any agent (Claude Code, Codex, Gemini) and for people, then the repo's State and Environment facts
 CLAUDE.md           one line that imports AGENTS.md; nothing of its own
-next-agents.md      handoff: the agent's state and next steps, rewritten at the end of each thread; /start creates it
-next-operator.md    handoff: the operator's steps and open questions
+next.md             the ordered list of what's next, each step saying whose; nothing else. /start creates it, update-next changes it
 LICENSE             MIT
 LOCAL.md            git-ignored notes that stay on one machine (private names, local paths)
 md/                 the repo's documents, in seven folders that always exist (md/README.md)
@@ -44,8 +43,8 @@ its number as `R7. Retired YYYY-MM-DD: <why>.`
 
 ### Root
 
-- **R1.** `README.md`, `AGENTS.md`, `CLAUDE.md`, `next-agents.md` and
-  `next-operator.md` exist at the root.
+- **R1.** `README.md`, `AGENTS.md`, `CLAUDE.md` and `next.md` exist at the
+  root.
 - **R2.** `LICENSE` (or `LICENSE.md`), `CHANGELOG.md` and `LOCAL.md` may
   also sit at the root. `LOCAL.md` is git-ignored.
 - **R3.** No other document sits at the root. A governing document goes in
@@ -97,17 +96,25 @@ its number as `R7. Retired YYYY-MM-DD: <why>.`
 
 - **R18.** An analysis holds findings and recommendations, never open
   questions (the global rule in `~/.dotfiles/agents/AGENTS.md`, "Docs").
-- **R19.** An open question that blocks the next step goes in
-  `next-operator.md`. Any other open question goes in a plan linked from
+- **R19.** An open question that blocks the next step is an `(operator)`
+  step in `next.md`. Any other open question goes in a plan linked from
   it.
-- **R20.** `/start` reads the handoff files and `/end` rewrites them.
-  Finished steps are deleted, not kept as history.
+- **R20.** `/start` reads the handoff (`next.md` and the State in
+  `AGENTS.md`) and `/end` rewrites it. Finished steps are deleted, not kept
+  as history.
 - **R21.** Threads are not kept in the client repo. `/end` writes each
   thread's exchange, unredacted, to the private
   [thread-archive](https://github.com/markreveley/thread-archive) repo
   under `threads/<repo>/`.
-- **R22.** What a client repo learned from a thread goes in its handoff
-  files and documents.
+- **R22.** What a client repo learned from a thread goes in the State and
+  Environment facts in its `AGENTS.md`, and in its documents.
+- **R30.** `next.md` holds only the ordered list of next steps, each saying
+  whose it is (`(operator)`, `(agent)`, `(agent, blocked on operator)`).
+  What is true now goes under `## State` and `## Environment facts` in
+  `AGENTS.md`. The `update-next` skill (agent-files plugin) is the one way
+  to change `next.md`: it also updates the repo's row in direction's
+  `repo-manifest.md`, which mirrors the first open step. `/end` calls it; a
+  hand edit is followed by running it.
 
 ### Private names
 
@@ -155,8 +162,9 @@ For a new client repo:
 
 1. Create it from this template on GitHub.
 2. Replace every `<placeholder>` in `README.md` and `AGENTS.md`.
-3. Delete `next-agents.md` and `next-operator.md` (they are this repo's
-   own) and run `/start`, which creates fresh ones.
+3. Delete `next.md` and empty the State and Environment facts sections of
+   `AGENTS.md` (they are this repo's own), then run `/start`, which writes
+   fresh ones.
 4. Pin `md/README.md`, each folder README and each governing document:
    `skills/template-sync/sync.sh --pin <file>`. A file still identical to
    the template's is cut to its title before the block is added.
@@ -225,7 +233,9 @@ nothing else in any document.
 
 | Check | Rule |
 | --- | --- |
-| `README.md`, `AGENTS.md`, `CLAUDE.md`, `next-agents.md` and `next-operator.md` exist at the root | R1 |
+| `README.md`, `AGENTS.md`, `CLAUDE.md` and `next.md` exist at the root | R1 |
+| No `next-agents.md` or `next-operator.md` at the root: with no `next.md`, one finding says to merge them with `update-next`; beside `next.md`, each is a leftover | R1, R30 |
+| `AGENTS.md` has a `## State` line | R30 |
 | No other `.md` file sits at the root, except `LOCAL.md`, `LICENSE.md` and `CHANGELOG.md` | R3 |
 | `CLAUDE.md` has a line starting `@AGENTS.md` | R4 |
 | `md/` exists, and so do its seven default folders | R5 |
@@ -245,5 +255,6 @@ nothing else in any document.
 - R13: that the pins are there. The check compares the pins it finds;
   `sync.sh`'s report lists files with none.
 - R28: that `_scheduled/` files follow the structure.
+- R30: that `next.md` holds only the list.
 - R15 to R27, R29: names, status lines, headers, open questions, handoff files,
   threads, private names, decisions.

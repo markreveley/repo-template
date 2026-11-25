@@ -9,7 +9,7 @@ analysis that links to it.
 against the repo's own position, the result of an audit or experiment, a
 research report.
 
-**Does not:** open questions (they go in `next-operator.md` or a plan),
+**Does not:** open questions (they go in `next.md` as `(operator)` steps, or in a plan),
 steps to take (a plan, linked from the analysis's recommendations), a rule
 the analysis argues for (once adopted, `governance/POLICY.md`, citing the
 analysis).

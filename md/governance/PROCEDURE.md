@@ -14,7 +14,7 @@ sent back; the tools that run the steps.
 
 **Does not:** the rules the procedure satisfies (`POLICY.md`, cited by
 number); the results of running it (`../analysis/` or the pilot's own
-folder); the next thing to do (`next-agents.md`).
+folder); the next thing to do (`next.md`).
 
 **Form.**
 

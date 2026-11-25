@@ -9,9 +9,26 @@ findings=0
 say() { findings=$((findings + 1)); printf '%s\n' "$*"; }
 
 # 1. The named root files (R1), and CLAUDE.md's import (R4).
-for f in README.md AGENTS.md CLAUDE.md next-agents.md next-operator.md; do
+for f in README.md AGENTS.md CLAUDE.md; do
   [ -f "$f" ] || say "missing at root: $f"
 done
+# The handoff (R1, R30): next.md, not the older next-agents.md / next-operator.md pair.
+old=""
+for f in next-agents.md next-operator.md; do
+  [ -f "$f" ] && old="$old $f"
+done
+if [ -f next.md ]; then
+  for f in $old; do
+    say "leftover handoff file: $f (its steps belong in next.md and its state in AGENTS.md; merge it with update-next, then delete it; R30)"
+  done
+elif [ -n "$old" ]; then
+  say "old handoff files at root:$old, and no next.md (merge them into next.md, state into AGENTS.md, with update-next; R1, R30)"
+else
+  say "missing at root: next.md"
+fi
+if [ -f AGENTS.md ] && ! grep -q '^## State' AGENTS.md; then
+  say "AGENTS.md has no '## State' section (what is true now goes there; R30)"
+fi
 if [ -f CLAUDE.md ] && ! grep -q '^@AGENTS.md' CLAUDE.md; then
   say "CLAUDE.md does not import AGENTS.md (expected a line '@AGENTS.md')"
 fi
@@ -20,7 +37,7 @@ fi
 for f in *.md; do
   [ -e "$f" ] || continue
   case "$f" in
-    README.md|AGENTS.md|CLAUDE.md|next-agents.md|next-operator.md|LOCAL.md|LICENSE.md|CHANGELOG.md) ;;
+    README.md|AGENTS.md|CLAUDE.md|next.md|next-agents.md|next-operator.md|LOCAL.md|LICENSE.md|CHANGELOG.md) ;;
     *) say "loose document at root: $f (a governing document goes in md/governance/, anything else under md/)" ;;
   esac
 done
